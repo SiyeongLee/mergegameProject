@@ -4,48 +4,59 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
+
+
 public class PlayerController : MonoBehaviour
 {
-    public float Speed = 5f;
-    public GameObject[] fruit;
-    public GameObject hold_fruit;
-    private bool hold = false;
-    private Transform holdtra;
-    
+    public Transform spawnPoint;          // 과일이 생성될 위치
+    public GameObject[] fruitPrefabs;     // 과일 프리팹 배열
+    public float moveSpeed = 5f;
+
+    private GameObject currentFruit;
+    private bool isDropping = false;
 
     void Start()
     {
-        
+        SpawnFruit();
     }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (currentFruit != null && !isDropping)
         {
-            transform.Translate(Vector3.left * Speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Translate(Vector3.right * Speed * Time.deltaTime);
-        }
-        if (!hold) Invoke("MakeFuit", 0.5f);
-        
-        else
-        {
-            holdtra.position = transform.position + Vector3.down;
-        }
-        if(Input.GetKeyDown(KeyCode.Space) && hold)
-        {
-            holdrbody = hold_fruit.GetComponent<Rigidbody>();
-            holdrbody.
-        }
-        void MakeFruit()
-        {
-            GameObject newfruit = Instantiate(fruit[Random.Range(0, 3)], transform.position, transform.rotation);
+            float move = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+            currentFruit.transform.position += new Vector3(move, 0, 0);
 
-
-            hold_fruit = newfruit;
-          
-            holdtra = hold_fruit.GetComponent<Transform>();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                DropFruit();
+            }
         }
+    }
+
+    void SpawnFruit()
+    {
+        int randomIndex = Random.Range(0, 2); // 처음엔 0~1단계 과일만 나오게
+        currentFruit = Instantiate(fruitPrefabs[randomIndex], spawnPoint.position, Quaternion.identity);
+        currentFruit.tag = "Fruit"; // 태그 설정
+
+        isDropping = false;
+    }
+
+    void DropFruit()
+    {
+        if (currentFruit == null) return;
+
+        Rigidbody rb = currentFruit.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.useGravity = true;
+        }
+
+        currentFruit = null;
+        isDropping = true;
+
+        Invoke(nameof(SpawnFruit), 0.8f); // 잠시 후 다음 과일 생성
     }
 }

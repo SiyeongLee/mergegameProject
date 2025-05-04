@@ -1,25 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class checksame : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        if (!collision.gameObject.CompareTag("Fruit")) return;
+
+        Fruit myFruit = GetComponent<Fruit>();
+        Fruit otherFruit = collision.gameObject.GetComponent<Fruit>();
+
+        if (myFruit == null || otherFruit == null) return;
+        if (myFruit.fruitIndex != otherFruit.fruitIndex) return;
+
+        if (myFruit.isMerging || otherFruit.isMerging) return;
+
+        myFruit.isMerging = true;
+        otherFruit.isMerging = true;
+
+        StartCoroutine(DelayedMerge(myFruit, otherFruit));
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator DelayedMerge(Fruit fruitA, Fruit fruitB)
     {
-        
-    }
-    void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.CompareTag(gameObject.tag))
-        {
-            Debug.Log(1);
-        }
+        yield return new WaitForSeconds(0.05f); // 딜레이로 중복 병합 방지
+        GameManager.instance.MergeFruits(fruitA.gameObject, fruitB.gameObject);
     }
 }
