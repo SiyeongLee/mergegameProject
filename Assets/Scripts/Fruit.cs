@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine;
-
 public class Fruit : MonoBehaviour
 {
-    public int fruitIndex;     // 과일 단계 (0: 사과, 1: 오렌지 ...)
-    public bool isMerging = false;  // 병합 중인지 여부
+    public int fruitIndex;
+    public bool isMerging = false;
+    public bool isMerged = false;
+
+    public bool isHeld = false;     // 플레이어가 들고 있는 상태
+    public float dropTime = 0f;     // 낙하 시간
 }
