@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3567958552276707198
+--- !u!1 &3486910040272315384
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,52 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2834485570859777940}
-  - component: {fileID: 5388280631561106526}
-  - component: {fileID: 3854060154047441902}
-  - component: {fileID: 3093056099502562533}
-  - component: {fileID: 6225388137011476479}
-  - component: {fileID: 8193483720570405842}
-  - component: {fileID: 2354636706824272600}
-  - component: {fileID: 4482490718896688091}
-  - component: {fileID: 3250922409126960250}
+  - component: {fileID: 6250028960963160391}
+  - component: {fileID: 8764347817649862728}
+  - component: {fileID: 2626179082300525806}
+  - component: {fileID: 7348642746270844011}
+  - component: {fileID: 6461554989309960746}
+  - component: {fileID: 4896001800869053844}
+  - component: {fileID: 3588585828816634861}
   m_Layer: 0
   m_Name: Sphere (1)
-  m_TagString: Fruit_0
+  m_TagString: Fruit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2834485570859777940
+--- !u!4 &6250028960963160391
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3567958552276707198}
+  m_GameObject: {fileID: 3486910040272315384}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -206, y: -144.1, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -5.0073, y: 20, z: -3.8846}
+  m_LocalScale: {x: 0.9854, y: 1.5728353, z: 1.0942861}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5388280631561106526
+--- !u!33 &8764347817649862728
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3567958552276707198}
+  m_GameObject: {fileID: 3486910040272315384}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3854060154047441902
+--- !u!23 &2626179082300525806
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3567958552276707198}
+  m_GameObject: {fileID: 3486910040272315384}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -67,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d3a39029175f69642baec414d26ec7b3, type: 2}
+  - {fileID: 2100000, guid: 08b8717e74d2eb04e8d0b2665d91d661, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -89,13 +87,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3093056099502562533
+--- !u!135 &7348642746270844011
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3567958552276707198}
+  m_GameObject: {fileID: 3486910040272315384}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -110,46 +108,13 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &6225388137011476479
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3567958552276707198}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8193483720570405842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3567958552276707198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bd8f67038a1fe14daab1bb8d54c8493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!54 &2354636706824272600
+--- !u!54 &6461554989309960746
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3567958552276707198}
+  m_GameObject: {fileID: 3486910040272315384}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -170,28 +135,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4482490718896688091
+--- !u!114 &4896001800869053844
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3567958552276707198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bd8f67038a1fe14daab1bb8d54c8493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3250922409126960250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3567958552276707198}
+  m_GameObject: {fileID: 3486910040272315384}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da50069673fe0304d9ee6151b8b18cb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
+  FruitType: 0
+  isHeld: 0
+  dropTime: 0
+--- !u!114 &3588585828816634861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3486910040272315384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65f91d9e362f2c429468ac2a6f0a287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

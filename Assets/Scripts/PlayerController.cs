@@ -1,118 +1,118 @@
-﻿
-using System.Collections.Generic;
-using UnityEngine.UIElements;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("과일 관련")]
-    public GameObject[] fruitPrefabs;
+    public Transform[] fruitPoses;
     public Transform spawnPoint;
-    public float spawnDelay = 0.3f;
+    public GameObject currentFruit;
 
-    [Header("플레이어 이동")]
-    public float moveSpeed = 5f;
-    public float rotateSpeed = 100f;
-
-    [Header("카메라")]
-    public Transform cameraTransform;
-    public float cameraRotateSpeed = 50f;
-
-    [HideInInspector] public GameObject currentFruit;
-    [HideInInspector] public bool hasDropped = false;
+    private bool isDropping = false;
 
     void Start()
     {
+        if (spawnPoint == null)
+        {
+            Debug.LogError("SpawnPoint is not assigned in PlayerController.");
+            enabled = false;
+            return;
+        }
+
+        if (fruitPoses == null || fruitPoses.Length == 0)
+        {
+            Debug.LogError("Fruit poses not assigned or empty in PlayerController.");
+            enabled = false;
+            return;
+        }
+
         SpawnFruit();
     }
 
     void Update()
     {
-        HandleMovement();         // WASD 이동 + 회전
-        HandleCameraRotation();   // 화살표로 카메라 회전
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && currentFruit != null && !isDropping)
         {
             DropFruit();
         }
 
-        // 과일이 낙하 전이면 spawnPoint 위치에 유지
-        if (currentFruit != null && !hasDropped)
+        if (currentFruit != null && !isDropping)
         {
-            if (currentFruit.activeInHierarchy)
-                currentFruit.transform.position = spawnPoint.position;
-            else
-                currentFruit = null;
+            currentFruit.transform.position = spawnPoint.position;
+        }
+
+        float verticalInput = Input.GetAxisRaw("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        if (verticalInput != 0 && currentFruit != null)
+        {
+            currentFruit.transform.Rotate(Vector3.forward, -verticalInput * 90f * Time.deltaTime);
+        }
+
+        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && currentFruit != null)
+        {
+            float rotateDirection = Input.GetKey(KeyCode.LeftArrow) ? 1f : -1f;
+            currentFruit.transform.Rotate(Vector3.forward, rotateDirection * 90f * Time.deltaTime);
         }
     }
 
-    void HandleMovement()
+    void FixedUpdate()
     {
-        Vector3 move = Vector3.zero;
+        float move = 0f;
 
-        if (Input.GetKey(KeyCode.W)) move += transform.forward;
-        if (Input.GetKey(KeyCode.S)) move -= transform.forward;
-        if (Input.GetKey(KeyCode.A)) move -= transform.right;
-        if (Input.GetKey(KeyCode.D)) move += transform.right;
+        if (Input.GetKey(KeyCode.A)) move = -1f;
+        else if (Input.GetKey(KeyCode.D)) move = 1f;
 
-        transform.position += move * moveSpeed * Time.deltaTime;
-
-        if (Input.GetKey(KeyCode.Q)) transform.Rotate(Vector3.up, -rotateSpeed * Time.deltaTime);
-        if (Input.GetKey(KeyCode.E)) transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
+        transform.Translate(Vector3.right * move * 5f * Time.deltaTime);
     }
 
-    void HandleCameraRotation()
+    void DropFruit()
     {
-        if (cameraTransform == null) return;
+        isDropping = true;
 
-        if (Input.GetKey(KeyCode.LeftArrow))
-            cameraTransform.RotateAround(transform.position, Vector3.up, -cameraRotateSpeed * Time.deltaTime);
+        Rigidbody rb = currentFruit.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = false; // ������ �� �ֵ��� �߷� Ȱ��ȭ
+            rb.useGravity = true;
+        }
 
-        if (Input.GetKey(KeyCode.RightArrow))
-            cameraTransform.RotateAround(transform.position, Vector3.up, cameraRotateSpeed * Time.deltaTime);
+        Fruit fruit = currentFruit.GetComponent<Fruit>();
+        if (fruit != null)
+        {
+            fruit.isHeld = false;
+            fruit.dropTime = Time.time;
+        }
+
+        currentFruit = null;
+        Invoke("SpawnFruit", 0.4f);
     }
 
     public void SpawnFruit()
     {
-        int index = Random.Range(0, fruitPrefabs.Length);
-        currentFruit = Instantiate(fruitPrefabs[index], spawnPoint.position, Quaternion.identity);
-        currentFruit.tag = "Fruit";
-
-        Rigidbody rb = currentFruit.GetComponent<Rigidbody>();
-        if (rb == null) rb = currentFruit.AddComponent<Rigidbody>();
-        rb.useGravity = false;
-        rb.isKinematic = true;
-
-        Fruit fruitScript = currentFruit.GetComponent<Fruit>();
-        if (fruitScript != null)
+        if (fruitPoses == null || fruitPoses.Length == 0 || spawnPoint == null)
         {
-            fruitScript.fruitIndex = index;
-            fruitScript.isHeld = true;  // ✅ 과일 들고 있는 상태 표시
+            Debug.LogError("Cannot spawn fruit: Check fruitPoses and spawnPoint assignments.");
+            return;
         }
 
-        hasDropped = false;
-    }
+        int index = Random.Range(0, fruitPoses.Length);
+        Transform prefabTransform = fruitPoses[index];
 
-    public void DropFruit()
-    {
-        if (currentFruit == null) return;
-
-        Rigidbody rb = currentFruit.GetComponent<Rigidbody>();
-        rb.useGravity = true;
-        rb.isKinematic = false;
-
-        Fruit fruitScript = currentFruit.GetComponent<Fruit>();
-        if (fruitScript != null)
+        if (prefabTransform == null || prefabTransform.gameObject == null)
         {
-            fruitScript.isHeld = false;             // ✅ 손에서 놓음
-            fruitScript.dropTime = Time.time;       // ✅ 낙하 시간 기록
+            Debug.LogError($"Fruit prefab at index {index} is null.");
+            return;
         }
 
-        currentFruit = null;
-        hasDropped = true;
+        currentFruit = Instantiate(prefabTransform.gameObject, spawnPoint.position, Quaternion.identity);
 
-        Invoke(nameof(SpawnFruit), spawnDelay);
+        Rigidbody2D rigid = currentFruit.GetComponent<Rigidbody2D>();
+        if (rigid != null) rigid.simulated = false;
+
+        Fruit fruit = currentFruit.GetComponent<Fruit>();
+        if (fruit != null) fruit.isHeld = true;
+
+        isDropping = false;
     }
 }
