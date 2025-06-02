@@ -1,0 +1,28 @@
+newmtl blinn1SG
+illum 4
+Kd 0.24 0.00 0.00
+Ka 0.17 0.17 0.17
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.94 0.94 0.94
+newmtl blinn6SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.79 0.79 0.79
+Tf 1.00 1.00 1.00
+map_Kd Àº¹ÚÁö_01.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+newmtl blinn7SG
+illum 4
+Kd 0.50 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.50 0.50 0.50
+newmtl standardSurface2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 0.00
