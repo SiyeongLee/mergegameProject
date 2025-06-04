@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 431623339a612144dbb7222b12e323cd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 83127f8eb277bc64c832a7e83e1b01fb, type: 2}
     - target: {fileID: 919132149155446097, guid: 431623339a612144dbb7222b12e323cd, type: 3}
       propertyPath: m_Name
       value: strawberry
