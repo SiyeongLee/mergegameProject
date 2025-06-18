@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        // Ã¹ ¹øÂ° °úÀÏ ¹Ì¸® ¼±ÅÃ
+        // ì²« ë²ˆì§¸ ê³¼ì¼ ë¯¸ë¦¬ ì„ íƒ
         nextFruitIndex = Random.Range(0, fruitPrefabs.Length);
         ShowNextFruitPreview();
     }
@@ -73,11 +73,11 @@ public class PlayerController : MonoBehaviour
         {
             if (!isHolding)
             {
-                HoldFruit(); 
+                HoldFruit();
             }
             else
             {
-                DropFruit(); 
+                DropFruit();
             }
         }
     }
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
         isHolding = false;
         currentFruit = null;
 
-        // ³«ÇÏ Á÷ÈÄ ´ÙÀ½ °úÀÏ ÁØºñ & ÇÁ¸®ºä
+        // ë‚™í•˜ ì§í›„ ë‹¤ìŒ ê³¼ì¼ ì¤€ë¹„ & í”„ë¦¬ë·°
         nextFruitIndex = Random.Range(0, fruitPrefabs.Length);
         ShowNextFruitPreview();
     }
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
         Vector3 smoothed = Vector3.Lerp(cameraTransform.position, desiredPos, cameraSmoothSpeed * Time.deltaTime);
         cameraTransform.position = smoothed;
 
-        cameraTransform.rotation = Quaternion.Euler(60f, 0f, 0f); // Å¾´Ù¿î °íÁ¤ °¢µµ
+        cameraTransform.rotation = Quaternion.Euler(60f, 0f, 0f); // íƒ‘ë‹¤ìš´ ê³ ì • ê°ë„
     }
 
     // -------------------- Preview --------------------
