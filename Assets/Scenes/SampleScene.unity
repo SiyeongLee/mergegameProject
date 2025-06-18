@@ -243,13 +243,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfd0b3c705889f45b723ac48f4e8788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fruitPoses:
-  - {fileID: 6250028960963160391, guid: 7b63f7779fb0457498655f4aa5747c28, type: 3}
-  - {fileID: 5129569385801613375, guid: 90d8f7e9f6c080d42ba073d9db329138, type: 3}
-  - {fileID: 765843925674981668, guid: beb81e1e3959d0742946edb1d76e283d, type: 3}
-  - {fileID: 8953700820938386586, guid: 3b7efd75397b2cf46a2161eb0fc8cf09, type: 3}
+  moveSpeed: 5
+  rotationSpeed: 100
+  fruitPrefabs: []
   spawnPoint: {fileID: 649815418}
-  currentFruit: {fileID: 0}
+  cameraTransform: {fileID: 0}
+  cameraOffset: {x: 0, y: 10, z: -6}
+  cameraSmoothSpeed: 5
+  previewPosition: {fileID: 0}
 --- !u!65 &511388816
 BoxCollider:
   m_ObjectHideFlags: 0
