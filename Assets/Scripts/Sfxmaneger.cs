@@ -13,7 +13,7 @@ public class Sfxmaneger : MonoBehaviour
     }
     public void PlaycClickSound()
     {
-        audioSource.PlayOneShot(clicksound);
+     audioSource.PlayOneShot(clicksound);
     }
 
     // Update is called once per frame
