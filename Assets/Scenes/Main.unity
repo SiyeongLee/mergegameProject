@@ -1779,7 +1779,7 @@ MonoBehaviour:
     the space bar.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 454e93f03aaace642aa5e5f9e299ca54, type: 2}
-  m_sharedMaterial: {fileID: -6375563860278114367, guid: 8511e2828f837cf429921dcace37d691, type: 2}
+  m_sharedMaterial: {fileID: 2634513564816156022, guid: 454e93f03aaace642aa5e5f9e299ca54, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

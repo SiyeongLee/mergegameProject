@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6456758417868588080}
   - component: {fileID: 9186888566227019111}
   - component: {fileID: 903306834842158818}
-  - component: {fileID: 4482609171168974637}
+  - component: {fileID: 1486762080725604750}
   m_Layer: 0
   m_Name: pCylinder1
   m_TagString: Fruit
@@ -142,8 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65f91d9e362f2c429468ac2a6f0a287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &4482609171168974637
-BoxCollider:
+--- !u!64 &1486762080725604750
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -160,9 +160,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 10.348637, y: 12.676624, z: 4.192169}
-  m_Center: {x: 0.00000047683716, y: 10.508673, z: -0.00000047683716}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5076798556035486163, guid: db07a393088f16b43a8ddf43b1d5270c, type: 3}
 --- !u!1 &7818423260380367527
 GameObject:
   m_ObjectHideFlags: 0
