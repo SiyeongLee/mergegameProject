@@ -740,14 +740,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fruitPrefabs:
-  - {fileID: 8289599751017171576, guid: c60e0eaac90c28742976f98c491a9a68, type: 3}
-  - {fileID: 314490784587131077, guid: 57aa71d3a0f79ad419e63e5682135b00, type: 3}
-  - {fileID: 2120687228366035754, guid: b9c5d36f248e04f45a549b25d6d92632, type: 3}
-  - {fileID: 7112364421920847333, guid: ea6426be96bf2bc4e91e8fdc67603fbe, type: 3}
-  - {fileID: 7818423260380367527, guid: e073d94e39362f24b9e7394bb5cb69f2, type: 3}
-  - {fileID: 6196731708666937944, guid: 7bea3f93a2f1df84c89fbb26b1eb7c68, type: 3}
-  - {fileID: 2568775939133399311, guid: 33f9a199485ec4f40875a37611b662ee, type: 3}
-  - {fileID: 8944220399499519568, guid: 7dde37e975ea6174184ccb531598c9ef, type: 3}
+  - {fileID: 4498740531703924611, guid: ea6426be96bf2bc4e91e8fdc67603fbe, type: 3}
+  - {fileID: 5136034859975393933, guid: c60e0eaac90c28742976f98c491a9a68, type: 3}
+  - {fileID: 2412411818363040902, guid: b9c5d36f248e04f45a549b25d6d92632, type: 3}
+  - {fileID: 7272352173246008042, guid: 57aa71d3a0f79ad419e63e5682135b00, type: 3}
+  - {fileID: 6922107141435115624, guid: 33f9a199485ec4f40875a37611b662ee, type: 3}
+  - {fileID: 7272352173246008042, guid: 57aa71d3a0f79ad419e63e5682135b00, type: 3}
+  fruitScales:
+  - {x: 1, y: 1, z: 1}
+  - {x: 1, y: 1, z: 1}
+  - {x: 1, y: 1, z: 1}
+  - {x: 1, y: 1, z: 1}
+  - {x: 1, y: 1, z: 1}
+  - {x: 1, y: 1, z: 1}
 --- !u!1 &914447529 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3779745573541866595, guid: 724091181167af24dbc48e2eb8c9c8a9, type: 3}

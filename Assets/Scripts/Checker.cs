@@ -1,56 +1,62 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class Checker : MonoBehaviour
 {
-    private static bool isMerging = false;
+    [Tooltip("병합된 과일이 스폰될 Y 높이")]
+    [SerializeField] private float mergeHeight = 1.0f;
+    [Tooltip("그릇(판)의 중심 위치")]
+    [SerializeField] private Transform bowlCenter;
+    [Tooltip("그릇(판)의 반지름")]
+    [SerializeField] private float bowlRadius = 2.0f;
+
+    private static bool isMerging;
+    private Collider myCollider;
+
+    private void Awake()
+    {
+        myCollider = GetComponent<Collider>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // 1) 중복 병합 방지
         if (isMerging) return;
         if (!collision.gameObject.CompareTag("Fruit")) return;
 
-        // 2) Fruit 타입 체크
-        Fruit otherFruit = collision.gameObject.GetComponent<Fruit>();
-        Fruit thisFruit = GetComponent<Fruit>();
+        var otherFruit = collision.gameObject.GetComponent<Fruit>();
+        var thisFruit = GetComponent<Fruit>();
         if (otherFruit == null || thisFruit == null) return;
         if (otherFruit.FruitType != thisFruit.FruitType) return;
 
         isMerging = true;
+        myCollider.enabled = false;
+        collision.collider.enabled = false;
 
-        // 3) 충돌체 비활성화
-        Collider colThis = GetComponent<Collider>();
-        Collider colOther = collision.collider;
-        colThis.enabled = false;
-        colOther.enabled = false;
-
-        // 4) y 위치 낮은 쪽이 합병 처리
         if (transform.position.y < collision.transform.position.y)
         {
             int nextType = thisFruit.FruitType + 1;
-            if (nextType < GameManager.Instance.fruitPrefabs.Length)
-            {
-                Vector3 spawnPos = (transform.position + collision.transform.position) * 0.5f;
-                GameObject prefab = GameManager.Instance.fruitPrefabs[nextType];
 
-                // ★ 씬 루트에, 부모 없이 생성 ★
-                GameObject newFruit = Instantiate(prefab, spawnPos, Quaternion.identity);
+            // 1) 그릇 안 XZ 위치 계산 (평균 대신 두 과일 중간, 그릇 반지름 안으로 클램프)
+            Vector3 mid = (transform.position + collision.transform.position) * 0.5f;
+            Vector2 dir = new Vector2(mid.x - bowlCenter.position.x,
+                                       mid.z - bowlCenter.position.z);
+            if (dir.magnitude > bowlRadius)
+                dir = dir.normalized * (bowlRadius * 0.9f);
+            Vector3 spawnPos = new Vector3(
+                bowlCenter.position.x + dir.x,
+                mergeHeight,
+                bowlCenter.position.z + dir.y
+            );
 
-                // ★ Prefab 에셋에 저장된 기본 localScale 그대로 적용 ★
-                newFruit.transform.localScale = prefab.transform.localScale;
-            }
-            else
-            {
-                Debug.LogError("다음 타입의 Fruit Prefab이 없습니다!");
-            }
+            // 2) 스폰 (GameManager 내부에서 prefab 스케일 자동 적용)
+            GameManager.Instance.SpawnFruit(nextType, spawnPos, transform.parent)
+                       ?.GetComponent<Rigidbody>()?.Sleep();
+            // Rigidbody.Sleep() 으로 튕기는 관성도 제거
+
         }
 
-        // 5) 원본 두 과일 제거
         Destroy(collision.gameObject);
         Destroy(gameObject);
-
         isMerging = false;
     }
 }
