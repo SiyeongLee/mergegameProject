@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fruit : MonoBehaviour
 {
-    public int FruitType; // ¼ýÀÚ·Î °úÀÏ Á¾·ù¸¦ ±¸ºÐ
+    public int FruitType; // ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public bool isHeld = false;
-    public float dropTime;
+    public float dropTime = 5;
 }
