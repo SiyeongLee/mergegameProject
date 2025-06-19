@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         {
             isGameOver = true;
             gameTimer = 0f;
-            Debug.Log("⏰ 게임 종료! 5분 경과");
+            Debug.Log("5분 겨ㅇ과");
             return;
         }
 
@@ -102,23 +102,22 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // 1) 과일 생성 및 부모 설정
+
         currentFruit = Instantiate(fruitPrefabs[nextFruitIndex], spawnPoint.position, Quaternion.identity);
         currentFruit.transform.SetParent(this.transform, false);
         currentFruit.transform.localPosition = new Vector3(0f, -0.2f, 0.6f);
         currentFruit.transform.localRotation = Quaternion.identity;
 
-        // 2) 물리 끄기: 완전 Kinematic 모드
+
         var rb = currentFruit.GetComponent<Rigidbody>();
         if (rb != null)
         {
             rb.useGravity = false;
             rb.isKinematic = true;
-            // Hold 중엔 제약 없이 자유롭게 Transform 제어
+
             rb.constraints = RigidbodyConstraints.None;
         }
 
-        // 3) 충돌체 끄기 (플레이어 몸통과 충돌 방지)
         var col = currentFruit.GetComponent<Collider>();
         if (col != null)
             col.enabled = false;
@@ -129,28 +128,23 @@ public class PlayerController : MonoBehaviour
     void DropFruit()
     {
         if (currentFruit == null) return;
-
-        // 1) 부모 해제 및 위치 조정
         currentFruit.transform.SetParent(null);
         currentFruit.transform.position = transform.position + new Vector3(0f, 1f, 0f);
 
-        // 2) 물리 켜기: 중력 적용 + 회전 제약
+
         var rb = currentFruit.GetComponent<Rigidbody>();
         if (rb != null)
         {
             rb.isKinematic = false;
             rb.useGravity = true;
 
-            // 굴러다니면서 Y축을 중심으로만 회전하도록 X/Z 축 회전 고정
             rb.constraints = RigidbodyConstraints.FreezeRotationX
                            | RigidbodyConstraints.FreezeRotationZ;
 
-            // 혹시 남아 있는 관성(속도) 초기화
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
 
-        // 3) 충돌체 켜기
         var col = currentFruit.GetComponent<Collider>();
         if (col != null)
             col.enabled = true;
@@ -158,7 +152,6 @@ public class PlayerController : MonoBehaviour
         isHolding = false;
         currentFruit = null;
 
-        // 다음 과일 준비
         nextFruitIndex = Random.Range(0, fruitPrefabs.Length);
     }
 

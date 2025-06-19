@@ -18,8 +18,6 @@ public class Fruit : MonoBehaviour
 
     private void Awake()
     {
-        // Prefab 에서 설정된 로컬 스케일 값을 저장해 두면,
-        // 병합 시나 SpawnFruit 시점에 이 값을 그대로 쓸 수 있습니다.
         DefaultScale = transform.localScale;
     }
 }
