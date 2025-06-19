@@ -852,6 +852,8 @@ MonoBehaviour:
   - {fileID: 5136034859975393933, guid: c60e0eaac90c28742976f98c491a9a68, type: 3}
   - {fileID: 2412411818363040902, guid: b9c5d36f248e04f45a549b25d6d92632, type: 3}
   - {fileID: 7272352173246008042, guid: 57aa71d3a0f79ad419e63e5682135b00, type: 3}
+  - {fileID: 1708988341199375473, guid: 7dde37e975ea6174184ccb531598c9ef, type: 3}
+  - {fileID: 4108419141881438777, guid: ecfdbd8ba61ceb14eaf4e05b524e7c4e, type: 3}
   - {fileID: 6922107141435115624, guid: 33f9a199485ec4f40875a37611b662ee, type: 3}
   - {fileID: 1708988341199375473, guid: 7dde37e975ea6174184ccb531598c9ef, type: 3}
   fruitScales: []
